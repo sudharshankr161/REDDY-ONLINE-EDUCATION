@@ -1,0 +1,6 @@
+{
+  "name": "REDDY ONLINE EDUCATION",
+  "description": "Premier learning platform founded by CEO Sudharshan Reddy K R offering structured courses in Python, Mathematics, BSc Nursing, BDS Dentistry, AIML, and Communication Skills with live interactive classes and certification.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
