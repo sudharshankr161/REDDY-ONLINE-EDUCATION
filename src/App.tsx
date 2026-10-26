@@ -27,14 +27,21 @@ import {
   PhoneCall
 } from 'lucide-react';
 
+import { AboutPage } from './components/AboutPage';
+import { AboutPageModal } from './components/AboutPageModal';
+
 const MainApp: React.FC = () => {
   const { user, isEnrolled } = useAuth();
+
+  // Navigation View State: 'home' | 'about'
+  const [currentView, setCurrentView] = useState<'home' | 'about'>('home');
 
   // Search and Category Filters
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   // Modal States
+  const [aboutPageModalOpen, setAboutPageModalOpen] = useState(false);
   const [selectedCourseForDetail, setSelectedCourseForDetail] = useState<Course | null>(null);
   const [selectedCourseForPayment, setSelectedCourseForPayment] = useState<Course | null>(null);
   const [liveClassModalOpen, setLiveClassModalOpen] = useState(false);
@@ -105,133 +112,180 @@ const MainApp: React.FC = () => {
 
       {/* Top Bar Navigation */}
       <Navbar
+        onOpenAboutPage={() => {
+          setCurrentView('about');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
         onOpenPortal={() => setStudentDashboardOpen(true)}
         onOpenLive={() => { setLiveClassInitialId(undefined); setLiveClassModalOpen(true); }}
         onOpenMaterials={() => setStudyMaterialsModalOpen(true)}
         onOpenLinks={() => setWebsiteLinksModalOpen(true)}
         onOpenAuth={() => setAuthModalOpen(true)}
-        onScrollToFounder={handleScrollToFounder}
-        onScrollToCourses={handleScrollToCourses}
+        onScrollToFounder={() => {
+          if (currentView !== 'home') setCurrentView('home');
+          setTimeout(() => handleScrollToFounder(), 100);
+        }}
+        onScrollToCourses={() => {
+          if (currentView !== 'home') setCurrentView('home');
+          setTimeout(() => handleScrollToCourses(), 100);
+        }}
       />
 
-      {/* Hero Section */}
-      <Hero
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        onOpenLive={() => { setLiveClassInitialId(undefined); setLiveClassModalOpen(true); }}
-        onOpenLinks={() => setWebsiteLinksModalOpen(true)}
-        onScrollToCourses={handleScrollToCourses}
-        onScrollToFounder={handleScrollToFounder}
-      />
+      {/* Conditionally Render: Dedicated About Us Page OR Home Campus View */}
+      {currentView === 'about' ? (
+        <AboutPage
+          onBackToHome={() => {
+            setCurrentView('home');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onExploreCourses={() => {
+            setCurrentView('home');
+            setTimeout(() => handleScrollToCourses(), 150);
+          }}
+        />
+      ) : (
+        <>
+          {/* Hero Section */}
+          <Hero
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            onOpenLive={() => { setLiveClassInitialId(undefined); setLiveClassModalOpen(true); }}
+            onOpenLinks={() => setWebsiteLinksModalOpen(true)}
+            onScrollToCourses={handleScrollToCourses}
+            onScrollToFounder={handleScrollToFounder}
+          />
 
-      {/* Founder & CEO Showcase Section */}
-      <FounderSection
-        onOpenLinks={() => setWebsiteLinksModalOpen(true)}
-        onScrollToCourses={handleScrollToCourses}
-      />
+          {/* Founder & CEO Showcase Section (Prominently displaying the uploaded images) */}
+          <FounderSection
+            onOpenAboutPage={() => {
+              setCurrentView('about');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onOpenLinks={() => setWebsiteLinksModalOpen(true)}
+            onScrollToCourses={handleScrollToCourses}
+          />
 
-      {/* Main Courses Grid Section */}
-      <section id="courses-section" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-        
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 pb-6 border-b border-slate-200">
-          <div>
-            <div className="text-xs font-bold text-red-600 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-              <BookOpen className="w-3.5 h-3.5" />
-              Comprehensive Academic Catalog
+          {/* Main Courses Grid Section */}
+          <section id="courses-section" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            
+            {/* Section Header */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 pb-6 border-b border-slate-200">
+              <div>
+                <div className="text-xs font-bold text-red-600 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                  <BookOpen className="w-3.5 h-3.5" />
+                  Comprehensive Academic Catalog
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                  Featured Programs & Clinical Curricula
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-600 mt-1">
+                  Structured modules, interactive live classes, and verified credentials across technology, mathematics, medicine, and leadership.
+                </p>
+              </div>
+
+              <div className="flex items-center gap-3 shrink-0">
+                <button
+                  onClick={() => {
+                    setCurrentView('about');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="px-3.5 py-2 bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 rounded-xl text-xs font-bold shadow-xs transition-colors cursor-pointer flex items-center gap-1.5"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                  About Us (Photos & Story)
+                </button>
+                <button
+                  onClick={() => setStudyMaterialsModalOpen(true)}
+                  className="px-3.5 py-2 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded-xl text-xs font-semibold shadow-xs transition-colors cursor-pointer flex items-center gap-1.5"
+                >
+                  <FileText className="w-3.5 h-3.5 text-slate-500" />
+                  Download Study Guides
+                </button>
+                <button
+                  onClick={() => setWebsiteLinksModalOpen(true)}
+                  className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold shadow-xs transition-colors cursor-pointer flex items-center gap-1.5"
+                >
+                  <Globe className="w-3.5 h-3.5" />
+                  Website Links
+                </button>
+              </div>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-              Featured Programs & Clinical Curricula
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1">
-              Structured modules, interactive live classes, and verified credentials across technology, mathematics, medicine, and leadership.
-            </p>
-          </div>
 
-          <div className="flex items-center gap-3 shrink-0">
-            <button
-              onClick={() => setStudyMaterialsModalOpen(true)}
-              className="px-3.5 py-2 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded-xl text-xs font-semibold shadow-sm transition-colors cursor-pointer flex items-center gap-1.5"
-            >
-              <FileText className="w-3.5 h-3.5 text-slate-500" />
-              Download Study Guides
-            </button>
-            <button
-              onClick={() => setWebsiteLinksModalOpen(true)}
-              className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold shadow-sm transition-colors cursor-pointer flex items-center gap-1.5"
-            >
-              <Globe className="w-3.5 h-3.5" />
-              Website Links Directory
-            </button>
-          </div>
-        </div>
+            {/* Courses Cards Grid */}
+            {filteredCourses.length === 0 ? (
+              <div className="py-16 text-center bg-white rounded-3xl border border-slate-200 p-8 space-y-3">
+                <BookOpen className="w-12 h-12 text-slate-300 mx-auto" />
+                <h3 className="text-base font-bold text-slate-900">No courses match your query</h3>
+                <p className="text-xs text-slate-500 max-w-sm mx-auto">
+                  Try clearing your search query or reset the discipline filter.
+                </p>
+                <button
+                  onClick={() => { setSearchQuery(''); setSelectedCategory('all'); }}
+                  className="px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded-xl cursor-pointer"
+                >
+                  Reset Filters
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredCourses.map((course) => (
+                  <CourseCard
+                    key={course.id}
+                    course={course}
+                    onSelectCourse={(c) => setSelectedCourseForDetail(c)}
+                    onPayFee={(c) => setSelectedCourseForPayment(c)}
+                  />
+                ))}
+              </div>
+            )}
 
-        {/* Courses Cards Grid */}
-        {filteredCourses.length === 0 ? (
-          <div className="py-16 text-center bg-white rounded-3xl border border-slate-200 p-8 space-y-3">
-            <BookOpen className="w-12 h-12 text-slate-300 mx-auto" />
-            <h3 className="text-base font-bold text-slate-900">No courses match your query</h3>
-            <p className="text-xs text-slate-500 max-w-sm mx-auto">
-              Try clearing your search query or reset the discipline filter.
-            </p>
-            <button
-              onClick={() => { setSearchQuery(''); setSelectedCategory('all'); }}
-              className="px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded-xl cursor-pointer"
-            >
-              Reset Filters
-            </button>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredCourses.map((course) => (
-              <CourseCard
-                key={course.id}
-                course={course}
-                onSelectCourse={(c) => setSelectedCourseForDetail(c)}
-                onPayFee={(c) => setSelectedCourseForPayment(c)}
-              />
-            ))}
-          </div>
-        )}
+            {/* Direct Admissions & Consultation Helpdesk Banner */}
+            <div className="mt-16 bg-gradient-to-r from-red-900 via-slate-900 to-slate-950 rounded-3xl p-8 sm:p-10 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-slate-800">
+              <div className="space-y-2 text-center md:text-left">
+                <div className="text-xs font-bold text-amber-400 tracking-wider uppercase flex items-center justify-center md:justify-start gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  Admissions Open For Academic Year 2026-27
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                  Ready to Advance with Reddy Online Education?
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
+                  Talk directly with our academic counseling desk or Founder & CEO Sudharshan Reddy K R to map out your curriculum and scholarship benefits.
+                </p>
+              </div>
 
-        {/* Direct Admissions & Consultation Helpdesk Banner */}
-        <div className="mt-16 bg-gradient-to-r from-red-900 via-slate-900 to-slate-950 rounded-3xl p-8 sm:p-10 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-slate-800">
-          <div className="space-y-2 text-center md:text-left">
-            <div className="text-xs font-bold text-amber-400 tracking-wider uppercase flex items-center justify-center md:justify-start gap-1.5">
-              <Sparkles className="w-3.5 h-3.5" />
-              Admissions Open For Academic Year 2026-27
+              <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
+                <button
+                  onClick={() => {
+                    setCurrentView('about');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="w-full sm:w-auto px-5 py-3 bg-white text-slate-900 hover:bg-slate-100 rounded-xl text-xs font-extrabold transition-all cursor-pointer whitespace-nowrap shadow-md"
+                >
+                  About Us & Campus Photos
+                </button>
+                <a
+                  href="mailto:sudharshankr1611@gmail.com"
+                  className="w-full sm:w-auto px-5 py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-extrabold transition-all cursor-pointer whitespace-nowrap flex items-center justify-center gap-2 shadow-md shadow-red-600/30"
+                >
+                  <PhoneCall className="w-4 h-4" />
+                  <span>Contact Admissions Desk</span>
+                </a>
+              </div>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-              Ready to Advance with Reddy Online Education?
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
-              Talk directly with our academic counseling desk or Founder & CEO Sudharshan Reddy K R to map out your curriculum and scholarship benefits.
-            </p>
-          </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
-            <button
-              onClick={() => setWebsiteLinksModalOpen(true)}
-              className="w-full sm:w-auto px-5 py-3 bg-white text-slate-900 hover:bg-slate-100 rounded-xl text-xs font-extrabold transition-all cursor-pointer whitespace-nowrap shadow-md"
-            >
-              View Official Links & Registry
-            </button>
-            <a
-              href="mailto:sudharshankr1611@gmail.com"
-              className="w-full sm:w-auto px-5 py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-extrabold transition-all cursor-pointer whitespace-nowrap flex items-center justify-center gap-2 shadow-md shadow-red-600/30"
-            >
-              <PhoneCall className="w-4 h-4" />
-              <span>Contact Admissions Desk</span>
-            </a>
-          </div>
-        </div>
-
-      </section>
+          </section>
+        </>
+      )}
 
       {/* Institutional Footer */}
       <Footer
+        onOpenAboutPage={() => {
+          setCurrentView('about');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
         onOpenPortal={() => setStudentDashboardOpen(true)}
         onOpenLive={() => { setLiveClassInitialId(undefined); setLiveClassModalOpen(true); }}
         onOpenMaterials={() => setStudyMaterialsModalOpen(true)}
@@ -322,6 +376,18 @@ const MainApp: React.FC = () => {
           onSuccess={() => {
             showToast('Welcome back to Reddy Online Education!');
             setStudentDashboardOpen(true);
+          }}
+        />
+      )}
+
+      {/* MODAL 9: About Page Quick Modal */}
+      {aboutPageModalOpen && (
+        <AboutPageModal
+          onClose={() => setAboutPageModalOpen(false)}
+          onExploreCourses={() => {
+            setAboutPageModalOpen(false);
+            if (currentView !== 'home') setCurrentView('home');
+            setTimeout(() => handleScrollToCourses(), 150);
           }}
         />
       )}

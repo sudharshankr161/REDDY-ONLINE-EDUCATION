@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 
 interface NavbarProps {
+  onOpenAboutPage: () => void;
   onOpenPortal: () => void;
   onOpenLive: () => void;
   onOpenMaterials: () => void;
@@ -25,6 +26,7 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
+  onOpenAboutPage,
   onOpenPortal,
   onOpenLive,
   onOpenMaterials,
@@ -63,8 +65,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
           </div>
 
-          {/* Zone 2: Clean 4-5 Navigation Links (Single-Line) */}
-          <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-700">
+          {/* Zone 2: Clean Navigation Links (Single-Line) */}
+          <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-700">
+            <button
+              onClick={onOpenAboutPage}
+              className="text-red-700 font-bold hover:text-red-800 transition-colors whitespace-nowrap shrink-0 flex items-center gap-1.5 cursor-pointer bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg border border-red-200"
+            >
+              <Sparkles className="w-4 h-4 text-amber-500" />
+              About Us (Photos)
+            </button>
             <button
               onClick={onScrollToCourses}
               className="hover:text-red-600 transition-colors whitespace-nowrap shrink-0 flex items-center gap-1.5 cursor-pointer"
@@ -100,7 +109,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={onScrollToFounder}
               className="hover:text-red-600 transition-colors whitespace-nowrap shrink-0 flex items-center gap-1.5 cursor-pointer"
             >
-              <Sparkles className="w-4 h-4 text-amber-500" />
               Founder Desk
             </button>
           </nav>

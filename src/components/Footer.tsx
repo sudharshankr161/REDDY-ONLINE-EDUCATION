@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 
 interface FooterProps {
+  onOpenAboutPage: () => void;
   onOpenPortal: () => void;
   onOpenLive: () => void;
   onOpenMaterials: () => void;
@@ -20,6 +21,7 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({
+  onOpenAboutPage,
   onOpenPortal,
   onOpenLive,
   onOpenMaterials,
@@ -186,6 +188,10 @@ export const Footer: React.FC<FooterProps> = ({
             © {new Date().getFullYear()} REDDY ONLINE EDUCATION. All Rights Reserved. Founded & Directed by <strong>Sudharshan Reddy K R</strong>.
           </div>
           <div className="flex items-center gap-4">
+            <button onClick={onOpenAboutPage} className="text-amber-400 hover:text-white font-bold transition-colors cursor-pointer">
+              About Us (Photos & Story)
+            </button>
+            <span aria-hidden="true">·</span>
             <button onClick={onOpenLinks} className="hover:text-slate-300 transition-colors cursor-pointer">
               Website Portals
             </button>
