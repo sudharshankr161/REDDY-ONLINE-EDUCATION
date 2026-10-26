@@ -14,8 +14,12 @@ import {
   Phone, 
   ShieldCheck, 
   GraduationCap, 
-  ZoomIn
+  ZoomIn,
+  Video,
+  Briefcase
 } from 'lucide-react';
+import { CampusTourVideoPlayer } from './CampusTourVideoPlayer';
+import { StudentPlacementsShowcase } from './StudentPlacementsShowcase';
 
 interface AboutPageModalProps {
   onClose: () => void;
@@ -82,7 +86,7 @@ export const ABOUT_GALLERY_PHOTOS: GalleryPhoto[] = [
 
 export const AboutPageModal: React.FC<AboutPageModalProps> = ({ onClose, onExploreCourses }) => {
   const [selectedImage, setSelectedImage] = useState<GalleryPhoto | null>(null);
-  const [activeTab, setActiveTab] = useState<'overview' | 'gallery' | 'vision' | 'awards'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'tour' | 'placements' | 'gallery' | 'vision' | 'awards'>('overview');
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 md:p-6 animate-in fade-in duration-200">
@@ -105,7 +109,7 @@ export const AboutPageModal: React.FC<AboutPageModalProps> = ({ onClose, onExplo
                 </span>
               </div>
               <div className="text-xs text-slate-400">
-                Founded & Led by <strong>Sudharshan Reddy K R</strong> · Learn · Innovate · Succeed
+                Founded & Led by <strong>Sudharshan Reddy K R</strong> · Learn • Innovate • Succeed
               </div>
             </div>
           </div>
@@ -129,7 +133,29 @@ export const AboutPageModal: React.FC<AboutPageModalProps> = ({ onClose, onExplo
                 : 'border-transparent hover:text-slate-900'
             }`}
           >
-            Institutional Overview
+            Overview
+          </button>
+          <button
+            onClick={() => setActiveTab('tour')}
+            className={`py-3.5 border-b-2 transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+              activeTab === 'tour'
+                ? 'border-red-600 text-red-600 font-extrabold'
+                : 'border-transparent hover:text-slate-900'
+            }`}
+          >
+            <Video className="w-3.5 h-3.5 text-blue-500" />
+            Campus Video Tour (Classroom, Canteen, Exam Hall)
+          </button>
+          <button
+            onClick={() => setActiveTab('placements')}
+            className={`py-3.5 border-b-2 transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+              activeTab === 'placements'
+                ? 'border-red-600 text-red-600 font-extrabold'
+                : 'border-transparent hover:text-slate-900'
+            }`}
+          >
+            <Briefcase className="w-3.5 h-3.5 text-emerald-500" />
+            Life Settle Placements (All 6 Courses)
           </button>
           <button
             onClick={() => setActiveTab('gallery')}
@@ -140,7 +166,7 @@ export const AboutPageModal: React.FC<AboutPageModalProps> = ({ onClose, onExplo
             }`}
           >
             <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-            Photo Gallery & Campus Life (5)
+            Photo Gallery (5)
           </button>
           <button
             onClick={() => setActiveTab('vision')}
@@ -150,7 +176,7 @@ export const AboutPageModal: React.FC<AboutPageModalProps> = ({ onClose, onExplo
                 : 'border-transparent hover:text-slate-900'
             }`}
           >
-            Founder Vision & Pedagogy
+            Founder Vision
           </button>
           <button
             onClick={() => setActiveTab('awards')}
@@ -161,7 +187,7 @@ export const AboutPageModal: React.FC<AboutPageModalProps> = ({ onClose, onExplo
             }`}
           >
             <Trophy className="w-3.5 h-3.5 text-amber-500" />
-            Awards & Trophy Cabinet
+            Trophies & Awards
           </button>
         </div>
 
@@ -370,7 +396,44 @@ export const AboutPageModal: React.FC<AboutPageModalProps> = ({ onClose, onExplo
             </div>
           )}
 
-          {/* TAB 2: FULL PHOTO GALLERY */}
+          {/* TAB: VIRTUAL CAMPUS VIDEO TOUR */}
+          {activeTab === 'tour' && (
+            <div className="space-y-6">
+              <div className="bg-slate-900 text-white p-5 rounded-2xl border border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div>
+                  <div className="text-xs font-bold text-amber-400 uppercase tracking-wider">
+                    Interactive Facility Tour
+                  </div>
+                  <h3 className="text-xl font-bold text-white mt-1">
+                    Reddy Online Education Campus & Student Facilities
+                  </h3>
+                  <p className="text-xs text-slate-300 mt-1">
+                    Step inside our smart classrooms, hygienic student canteen, 500-seat central examination hall, clinical simulation labs, and executive directorate.
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700 text-xs text-slate-300 shrink-0">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>5 Dedicated Facility Scenes</span>
+                </div>
+              </div>
+
+              <CampusTourVideoPlayer />
+            </div>
+          )}
+
+          {/* TAB: LIFE SETTLE PLACEMENTS */}
+          {activeTab === 'placements' && (
+            <div className="space-y-6">
+              <StudentPlacementsShowcase 
+                onExploreCourses={() => {
+                  onClose();
+                  onExploreCourses();
+                }} 
+              />
+            </div>
+          )}
+
+          {/* TAB: FULL PHOTO GALLERY */}
           {activeTab === 'gallery' && (
             <div className="space-y-6">
               <div>

@@ -29,6 +29,7 @@ import {
 
 import { AboutPage } from './components/AboutPage';
 import { AboutPageModal } from './components/AboutPageModal';
+import { VoiceGuideAssistant } from './components/VoiceGuideAssistant';
 
 const MainApp: React.FC = () => {
   const { user, isEnrolled } = useAuth();
@@ -391,6 +392,9 @@ const MainApp: React.FC = () => {
           }}
         />
       )}
+
+      {/* Floating Female Voice Guide Assistant (Women Sound / మహిళా వాయిస్ అసిస్టెంట్) */}
+      <VoiceGuideAssistant />
 
     </div>
   );
