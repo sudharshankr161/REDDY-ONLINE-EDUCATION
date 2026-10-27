@@ -228,9 +228,8 @@ Website & Support: sudharshankr1611@gmail.com
                 </div>
 
                 <div className="text-xs p-3 rounded-xl bg-white/80 border border-current/20 max-w-xl mx-auto text-left font-medium">
-                  <div className="font-bold mb-1">Validation Notice (తెలుగు & English):</div>
+                  <div className="font-bold mb-1">Academic Eligibility Notice:</div>
                   <div>• {registeredRecord.isEligible ? eligibility.messageEn : eligibility.ruleExplanationEn}</div>
-                  <div className="mt-1 text-slate-700">• {registeredRecord.isEligible ? eligibility.messageTe : eligibility.ruleExplanationTe}</div>
                 </div>
               </div>
 
@@ -347,16 +346,13 @@ Website & Support: sudharshankr1611@gmail.com
                 <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
                 <div className="text-xs space-y-1">
                   <div className="font-extrabold text-amber-950 flex items-center gap-2">
-                    <span>కనీస విద్యార్హత నిబంధన / Mandatory Minimum Admission Requirement</span>
+                    <span>Mandatory Minimum Admission Requirement</span>
                     <span className="bg-red-600 text-white text-[10px] px-2 py-0.2 rounded font-bold uppercase">
                       PUC (10+2)
                     </span>
                   </div>
                   <p className="text-amber-900 leading-relaxed">
                     Candidates must possess a minimum qualification of <strong>PUC (10+2 / Intermediate / Higher Secondary / 3-Year Diploma)</strong>. Students who have only passed 10th standard / SSLC are <strong>ineligible</strong> for university certification programs.
-                  </p>
-                  <p className="text-amber-800 text-[11px]">
-                    (తెలుగు): రెడ్డి ఆన్‌లైన్ ఎడ్యుకేషన్ లో సర్టిఫికేషన్ పొందడానికి కనీసం PUC (ఇంటర్మీడియట్) పాస్ అయి ఉండాలి. 10వ తరగతి మాత్రమే చదివిన వారికి ప్రవేశ అర్హత లేదు.
                   </p>
                 </div>
               </div>
@@ -365,7 +361,7 @@ Website & Support: sudharshankr1611@gmail.com
               <div className="space-y-2">
                 <label className="text-xs font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
                   <BookOpen className="w-4 h-4 text-red-600" />
-                  <span>1. Select Desired Course / ప్రోగ్రామ్ ఎంపిక *</span>
+                  <span>1. Select Desired Course *</span>
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
                   {COURSES_DATA.map((c) => {
@@ -401,7 +397,7 @@ Website & Support: sudharshankr1611@gmail.com
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <label className="text-xs font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
                     <GraduationCap className="w-4 h-4 text-red-600" />
-                    <span>2. Highest Education Qualification & Stream * (అర్హత పరిశీలన)</span>
+                    <span>2. Highest Education Qualification & Stream *</span>
                   </label>
                   <span className="text-[11px] font-semibold text-slate-500">
                     Live Eligibility Evaluation Active
@@ -522,9 +518,6 @@ Website & Support: sudharshankr1611@gmail.com
                         {eligibility.isEligible ? eligibility.messageEn : eligibility.messageEn}
                       </strong>
                     </div>
-                    <p className="text-[11px] opacity-90">
-                      <strong>తెలుగు:</strong> {eligibility.messageTe}
-                    </p>
                     <p className="text-[11px] opacity-80 pt-0.5">
                       {eligibility.isEligible ? eligibility.ruleExplanationEn : eligibility.ruleExplanationEn}
                     </p>

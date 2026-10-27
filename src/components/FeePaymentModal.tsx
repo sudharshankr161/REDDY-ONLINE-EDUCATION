@@ -394,7 +394,7 @@ Authorized Signatory: Sudharshan Reddy K R (Founder & CEO)
                       <span>1. Student Registration & Eligibility (PUC Min Required)</span>
                     </div>
                     <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
-                      కనీస అర్హత: PUC (10+2)
+                      Min Requirement: PUC (10+2)
                     </span>
                   </div>
                   
@@ -444,7 +444,7 @@ Authorized Signatory: Sudharshan Reddy K R (Founder & CEO)
                     {/* Educational Qualification Selector */}
                     <div>
                       <label className="block text-slate-700 font-bold mb-1">
-                        Highest Qualification * (కనిష్ట విద్యార్హత)
+                        Highest Qualification *
                       </label>
                       <select
                         value={qualification}
@@ -507,9 +507,6 @@ Authorized Signatory: Sudharshan Reddy K R (Founder & CEO)
                         </span>
                         <strong className="text-xs">{eligibility.messageEn}</strong>
                       </div>
-                      <p className="text-[11px] opacity-90">
-                        <strong>తెలుగు:</strong> {eligibility.messageTe}
-                      </p>
                     </div>
                   </div>
                 </div>

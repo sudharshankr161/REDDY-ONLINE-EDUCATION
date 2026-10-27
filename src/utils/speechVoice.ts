@@ -1,15 +1,13 @@
 /**
- * Speech utility configured specifically for high-clarity Female Voice (Women Sound / మహిళా స్వరం)
- * Supporting Telugu (తెలుగు) and English with fallback pitch tuning.
+ * Speech utility configured specifically for high-clarity Female Voice (Women Sound)
+ * Tuned with gentle acoustic pitch and steady pace for educational clarity.
  */
 
 export interface VoiceGuideScript {
   id: string;
   titleEn: string;
-  titleTe: string;
   category: string;
   textEn: string;
-  textTe: string;
 }
 
 export const FEMALE_VOICE_SCRIPTS: VoiceGuideScript[] = [
@@ -17,41 +15,31 @@ export const FEMALE_VOICE_SCRIPTS: VoiceGuideScript[] = [
     id: 'welcome',
     category: 'Welcome & Founder',
     titleEn: 'Welcome & Founder Sudharshan Reddy KR',
-    titleTe: 'స్వాగతం & ఫౌండర్ సుదర్శన్ రెడ్డి గారి పరిచయం',
-    textEn: 'Hello and a warm welcome to Reddy Online Education! I am Ramya, your virtual campus voice guide. Under the visionary leadership of our Founder and Chief Executive Officer, Sudharshan Reddy K R, our institution is empowering students across India with affordable, world-class education. Our motto is: Learn, Innovate, Succeed.',
-    textTe: 'నమస్కారం! రెడ్డి ఆన్‌లైన్ ఎడ్యుకేషన్‌కు హృదయపూర్వక స్వాగతం. నేను రమ్య, మీ వర్చువల్ క్యాంపస్ వాయిస్ గైడ్‌ని. మన ఫౌండర్ మరియు సీఈఓ సుదర్శన్ రెడ్డి కే ఆర్ గారి మార్గదర్శకత్వంలో, భారతదేశం నలుమూలల విద్యార్థులకు నాణ్యమైన విద్యను అందిస్తున్నాము. మన నినాదం: నేర్చుకోండి, ఆవిష్కరించండి, విజయం సాధించండి.'
+    textEn: 'Hello and a warm welcome to Reddy Online Education! I am Ramya, your virtual campus voice guide. Under the visionary leadership of our Founder and Chief Executive Officer, Sudharshan Reddy K R, our institution is empowering students across India with affordable, world-class education. Our motto is: Learn, Innovate, Succeed.'
   },
   {
     id: 'campus-tour',
     category: 'Campus Facilities',
     titleEn: 'Classrooms, Canteen & Examination Hall',
-    titleTe: 'తరగతులు, క్యాంటీన్ మరియు ఎగ్జామ్ హాల్ టూర్',
-    textEn: 'Let me take you on a tour of our state-of-the-art campus! Our smart classrooms feature 85-inch 4K touch displays and live code projection. Our campus canteen provides nutritious, hygienic multi-cuisine food in a vibrant student lounge. Our central examination hall accommodates over 500 students with individual privacy partitions, biometric security, and gigabit testing terminals. We also have advanced clinical nursing and dental simulation laboratories.',
-    textTe: 'ఇప్పుడు మన ఆధునిక క్యాంపస్ సౌకర్యాలను చూద్దాం! మన స్మార్ట్ క్లాస్‌రూమ్‌లలో 4K ఇంటరాక్టివ్ స్క్రీన్స్ మరియు లైవ్ అనలిటిక్స్ ఉన్నాయి. మన క్యాంపస్ క్యాంటీన్‌లో అత్యంత పరిశుభ్రమైన, పోషకమైన ఆహారం మరియు ఫ్రెండ్లీ స్టడీ లాంజ్ లభిస్తుంది. 500 కంటే ఎక్కువ మంది పరీక్షలు రాసే సెంట్రల్ ఎగ్జామినేషన్ హాల్ బయోమెట్రిక్ భద్రతతో ఉంది. అలాగే అత్యాధునిక బీఎస్సీ నర్సింగ్ మరియు బీడీఎస్ డెంటల్ ల్యాబ్‌లు అందుబాటులో ఉన్నాయి.'
+    textEn: 'Let me take you on a tour of our state-of-the-art campus! Our smart classrooms feature 85-inch 4K touch displays and live code projection. Our campus canteen provides nutritious, hygienic multi-cuisine food in a vibrant student lounge. Our central examination hall accommodates over 500 students with individual privacy partitions, biometric security, and gigabit testing terminals. We also have advanced clinical nursing and dental simulation laboratories.'
   },
   {
     id: 'placements',
     category: 'Placements & Careers',
     titleEn: 'Life Settle Students & Placement Milestones',
-    titleTe: 'జీవితంలో స్థిరపడిన విద్యార్థులు & ప్లేస్‌మెంట్స్',
-    textEn: 'Reddy Online Education takes immense pride in our life-settled students! With a 96.8 percent placement rate, our alumni work in top technology giants and premier medical institutions. Our graduates have achieved packages up to 28.5 lakhs per annum, including placements at Zoho, Infosys, Nvidia partners, Ather Energy, Manipal Hospitals, Fortis Healthcare, and the National Health Service in the United Kingdom.',
-    textTe: 'రెడ్డి ఆన్‌లైన్ ఎడ్యుకేషన్‌లో చదివి జీవితంలో స్థిరపడిన విద్యార్థులను చూసి మేము ఎంతో గర్విస్తున్నాము! 96.8 శాతం ప్లేస్‌మెంట్ రికార్డుతో మన విద్యార్థులు జోహో, ఇన్ఫోసిస్, ఏథర్ ఎనర్జీ, మణిపాల్ మరియు ఫోర్టిస్ హాస్పిటల్స్‌లో స్థిరపడ్డారు. లండన్ లోని ఎన్ హెచ్ ఎస్ ట్రస్ట్ నర్సింగ్ తో పాటు గరిష్టంగా 28.5 లక్షల రూపాయల వార్షిక ప్యాకేజీలు సాధించారు.'
+    textEn: 'Reddy Online Education takes immense pride in our life-settled students! With a 96.8 percent placement rate, our alumni work in top technology giants and premier medical institutions. Our graduates have achieved packages up to 28.5 lakhs per annum, including placements at Zoho, Infosys, Nvidia partners, Ather Energy, Manipal Hospitals, Fortis Healthcare, and the National Health Service in the United Kingdom.'
   },
   {
     id: 'courses',
     category: 'Curriculum & Programs',
     titleEn: 'Overview of All 6 Specialised Courses',
-    titleTe: 'అన్ని 6 ప్రత్యేక కోర్సుల వివరాలు',
-    textEn: 'We offer six career-transforming programs: Core and Advanced Python Programming, Artificial Intelligence and Machine Learning Mastery, Bachelor of Science in Clinical Nursing, Bachelor of Dental Surgery, Higher Applied Mathematics, and Executive Communication and Leadership Skills. Each course includes structured syllabus, live classes, study notes, and direct mentorship.',
-    textTe: 'మన ఇన్స్టిట్యూట్‌లో ఆరు ఉత్తమ కోర్సులు ఉన్నాయి: పైథాన్ ప్రోగ్రామింగ్, ఆర్టిఫిషియల్ ఇంటెలిజెన్స్ అండ్ మెషిన్ లెర్నింగ్, బీఎస్సీ నర్సింగ్, బీడీఎస్ డెంటల్ సర్జరీ, హైయర్ మ్యాథమెటిక్స్, మరియు కమ్యూనికేషన్ స్కిల్స్. ప్రతి కోర్సులో లైవ్ క్లాసులు, స్టడీ మెటీరియల్స్ మరియు ప్రాక్టికల్ ట్రైనింగ్ ఉంటాయి.'
+    textEn: 'We offer six career-transforming programs: Core and Advanced Python Programming, Artificial Intelligence and Machine Learning Mastery, Bachelor of Science in Clinical Nursing, Bachelor of Dental Surgery, Higher Applied Mathematics, and Executive Communication and Leadership Skills. Each course includes structured syllabus, live classes, study notes, and direct mentorship.'
   },
   {
     id: 'puc-eligibility',
     category: 'Admissions & Eligibility',
     titleEn: 'Minimum PUC Eligibility & Student Registry',
-    titleTe: 'కనీస PUC అర్హత & స్టూడెంట్స్ రిజిస్ట్రేషన్ జాబితా',
-    textEn: 'Admissions guideline notice: Reddy Online Education strictly requires a minimum qualification of PUC (10+2 or Intermediate) for all university programs. Candidates with only 10th standard are ineligible for accredited certifications. All enrolled students and their applied courses are stored in our transparent Admissions Directory.',
-    textTe: 'ముఖ్య గమనిక: రెడ్డి ఆన్‌లైన్ ఎడ్యుకేషన్ లో ప్రవేశానికి కనీస విద్యార్హత PUC (10+2 / ఇంటర్మీడియట్) తప్పనిసరి. కేవలం 10వ తరగతి చదివిన వారికి ప్రవేశ అర్హత లేదు. రిజిస్టర్ అయిన విద్యార్థుల పూర్తి జాబితా మరియు వారి కోర్సుల వివరాలు మన స్టూడెంట్ రిజిస్ట్రేషన్ డైరెక్టరీలో భద్రపరచబడ్డాయి.'
+    textEn: 'Admissions guideline notice: Reddy Online Education strictly requires a minimum qualification of PUC (10+2 or Intermediate) for all university programs. Candidates with only 10th standard are ineligible for accredited certifications. All enrolled students and their applied courses are stored in our transparent Admissions Directory.'
   }
 ];
 
@@ -60,14 +48,14 @@ let activeUtterance: SpeechSynthesisUtterance | null = null;
 /**
  * Find the best available female voice on the user's system
  */
-export const getBestFemaleVoice = (lang: 'te' | 'en' | 'hi' | 'kn'): SpeechSynthesisVoice | null => {
+export const getBestFemaleVoice = (lang: string = 'en'): SpeechSynthesisVoice | null => {
   if (typeof window === 'undefined' || !('speechSynthesis' in window)) return null;
 
   const voices = window.speechSynthesis.getVoices();
   if (!voices || voices.length === 0) return null;
 
   // Language tags to search for
-  const langPrefix = lang === 'te' ? 'te' : lang === 'hi' ? 'hi' : lang === 'kn' ? 'kn' : 'en';
+  const langPrefix = lang.toLowerCase().slice(0, 2);
 
   // Female voice keyword indicators
   const femaleKeywords = [
@@ -113,7 +101,7 @@ export const getBestFemaleVoice = (lang: 'te' | 'en' | 'hi' | 'kn'): SpeechSynth
  */
 export const speakWithFemaleVoice = (
   text: string, 
-  lang: 'te' | 'en' = 'te',
+  lang: string = 'en',
   options?: {
     rate?: number;
     pitch?: number;
@@ -139,12 +127,12 @@ export const speakWithFemaleVoice = (
     utterance.voice = voice;
     utterance.lang = voice.lang;
   } else {
-    utterance.lang = lang === 'te' ? 'te-IN' : 'en-IN';
+    utterance.lang = 'en-IN';
   }
 
   // Women sound acoustic frequency tuning:
-  // Pitch set slightly higher (~1.15 to 1.25) to naturally reproduce a bright, clear feminine voice profile
-  utterance.pitch = options?.pitch ?? (lang === 'te' ? 1.15 : 1.2);
+  // Pitch set slightly higher (~1.20) to naturally reproduce a bright, clear feminine voice profile
+  utterance.pitch = options?.pitch ?? 1.2;
   utterance.rate = options?.rate ?? 0.95; // Steady and comfortable speed for educational clarity
   utterance.volume = 1.0;
 

@@ -133,9 +133,7 @@ export interface EligibilityResult {
   qualificationLabel: string;
   statusBadge: 'ELIGIBLE' | 'INELIGIBLE';
   messageEn: string;
-  messageTe: string;
   ruleExplanationEn: string;
-  ruleExplanationTe: string;
 }
 
 export interface StudentRegistrationRecord {

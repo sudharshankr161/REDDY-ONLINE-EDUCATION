@@ -114,7 +114,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBackToHome, onExploreCou
           </div>
         </div>
 
-        {/* Navigation Tabs Bar for About Page (Bilingual English & Telugu) */}
+        {/* Navigation Tabs Bar for About Page */}
         <div className="bg-white rounded-2xl p-1.5 border border-slate-200 shadow-xs flex items-center gap-1.5 overflow-x-auto text-xs font-bold text-slate-600">
           <button
             onClick={() => setAboutTab('all')}
@@ -125,7 +125,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBackToHome, onExploreCou
             }`}
           >
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span>All Overview • పూర్తి సమాచారం</span>
+            <span>All Overview</span>
           </button>
 
           <button
@@ -137,7 +137,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBackToHome, onExploreCou
             }`}
           >
             <Video className="w-3.5 h-3.5" />
-            <span>Campus Video Tour • వీడియో టూర్</span>
+            <span>Campus Video Tour</span>
             <span className="text-[10px] bg-red-100 text-red-700 px-1.5 py-0.5 rounded-md font-extrabold">
               Classroom · Canteen · Exam Hall
             </span>
@@ -152,7 +152,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBackToHome, onExploreCou
             }`}
           >
             <Briefcase className="w-3.5 h-3.5" />
-            <span>Life Settle Students • ప్లేస్‌మెంట్స్</span>
+            <span>Life Settle Students & Careers</span>
             <span className="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded-md font-extrabold">
               All Courses
             </span>
@@ -167,7 +167,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBackToHome, onExploreCou
             }`}
           >
             <Camera className="w-3.5 h-3.5 text-amber-400" />
-            <span>Photo Archive (5 Photos) • ఫోటోలు</span>
+            <span>Photo Archive (5 Photos)</span>
           </button>
 
           <button
@@ -179,7 +179,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBackToHome, onExploreCou
             }`}
           >
             <Compass className="w-3.5 h-3.5 text-blue-400" />
-            <span>Founder Vision & Heritage • విజన్</span>
+            <span>Founder Vision & Heritage</span>
           </button>
         </div>
 
@@ -190,13 +190,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBackToHome, onExploreCou
               <div>
                 <div className="text-xs font-bold text-red-600 uppercase tracking-wider flex items-center gap-1.5">
                   <Video className="w-4 h-4 text-red-600" />
-                  <span>2-Minute Campus Video & Audio Documentary · 2 నిమిషాల సమగ్ర వీడియో & ఆడియో టూర్</span>
+                  <span>2-Minute Campus Video & Audio Documentary</span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-1">
                   Full 2-Minute Tour: Classrooms, Canteen, Examination Hall & Placements
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-3xl leading-relaxed">
-                  A continuous 2-minute (120-second) cinematic video documentary with synchronized female voice narration (Women Sound - మహిళా స్వరం) and ambient musical soundbed. Experience our smart 4K classrooms, student canteen, 500-seat central examination hall, BDS & nursing simulation labs, and celebrated student placements under Chancellor Sudharshan Reddy K R.
+                  A continuous 2-minute (120-second) cinematic video documentary with synchronized female voice narration (Women Sound) and ambient musical soundbed. Experience our smart 4K classrooms, student canteen, 500-seat central examination hall, BDS & nursing simulation labs, and celebrated student placements under Chancellor Sudharshan Reddy K R.
                 </p>
               </div>
 
@@ -329,7 +329,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBackToHome, onExploreCou
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
                 <div>
                   <div className="text-xs font-bold text-red-600 uppercase tracking-wider mb-1">
-                    Visual Photographic Archive · ఫోటో గ్యాలరీ
+                    Visual Photographic Archive
                   </div>
                   <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                     Authentic Campus Life, Trophies & Student Honors
@@ -434,7 +434,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBackToHome, onExploreCou
             
             <div className="max-w-3xl space-y-3">
               <div className="text-xs font-bold text-red-600 uppercase tracking-wider">
-                Institutional Heritage · చరిత్ర మరియు దృష్టి
+                Institutional Heritage & Vision
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 A Unified Sanctuary for Technology, Health Sciences & Leadership

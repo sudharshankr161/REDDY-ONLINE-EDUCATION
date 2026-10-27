@@ -489,7 +489,7 @@ Office: Bengaluru & AP/Telangana Centers · sudharshankr1611@gmail.com
                               ELIGIBLE (PUC Passed)
                             </span>
                             <span className="text-[10px] text-emerald-700 font-medium mt-0.5">
-                              అర్హత ఉంది (10+2 పూర్తి)
+                              Meets 10+2 Requirement
                             </span>
                           </div>
                         ) : (
@@ -499,7 +499,7 @@ Office: Bengaluru & AP/Telangana Centers · sudharshankr1611@gmail.com
                               INELIGIBLE (&lt; PUC)
                             </span>
                             <span className="text-[10px] text-rose-700 font-medium mt-0.5">
-                              అనర్హులు (10వ తరగతి మాత్రమే)
+                              Below PUC (10th Standard Only)
                             </span>
                           </div>
                         )}

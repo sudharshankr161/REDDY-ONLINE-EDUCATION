@@ -252,7 +252,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <span className="flex items-center gap-2">
               <ClipboardList className="w-4 h-4 text-red-600" />
-              Student Registration List (రిజిస్ట్రేషన్ జాబితా)
+              Student Registration List
             </span>
             <span className="text-[10px] font-bold bg-red-600 text-white px-2 py-0.5 rounded-full">PUC Min</span>
           </button>

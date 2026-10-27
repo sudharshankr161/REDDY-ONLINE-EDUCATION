@@ -455,7 +455,7 @@ const MainApp: React.FC = () => {
         />
       )}
 
-      {/* Floating Female Voice Guide Assistant (Women Sound / మహిళా వాయిస్ అసిస్టెంట్) */}
+      {/* Floating Female Voice Guide Assistant (Women Sound) */}
       <VoiceGuideAssistant />
 
     </div>

@@ -1,25 +1,20 @@
 import { EducationLevel, EligibilityResult, StudentRegistrationRecord } from '../types';
 
-export const QUALIFICATION_LABELS: Record<EducationLevel, { en: string; te: string }> = {
+export const QUALIFICATION_LABELS: Record<EducationLevel, { en: string }> = {
   '10th': {
-    en: '10th Standard / SSLC / Matriculation (Below PUC)',
-    te: '10వ తరగతి / SSLC (PUC కన్నా తక్కువ)'
+    en: '10th Standard / SSLC / Matriculation (Below PUC)'
   },
   'puc': {
-    en: 'PUC / 10+2 / Intermediate / Higher Secondary',
-    te: 'PUC / 10+2 / ఇంటర్మీడియట్ (అర్హత ఉత్తీర్ణత)'
+    en: 'PUC / 10+2 / Intermediate / Higher Secondary'
   },
   'diploma': {
-    en: 'Polytechnic / 3-Year Technical Diploma',
-    te: 'పాలిటెక్నిక్ / 3 సంవత్సరాల డిప్లొమా'
+    en: 'Polytechnic / 3-Year Technical Diploma'
   },
   'graduate': {
-    en: 'Bachelor Degree (B.Sc, B.Tech, B.Com, MBBS, etc.)',
-    te: 'డిగ్రీ / గ్రాడ్యుయేషన్ (B.Sc, B.Tech, B.Com, మొదలైనవి)'
+    en: 'Bachelor Degree (B.Sc, B.Tech, B.Com, MBBS, etc.)'
   },
   'postgraduate': {
-    en: 'Post-Graduate / Master Degree (M.Sc, M.Tech, MCA, MD)',
-    te: 'పోస్ట్ గ్రాడ్యుయేట్ / మాస్టర్స్ డిగ్రీ'
+    en: 'Post-Graduate / Master Degree (M.Sc, M.Tech, MCA, MD)'
   }
 };
 
@@ -42,22 +37,17 @@ export function checkEligibility(
       qualificationLabel: qualLabel,
       statusBadge: 'INELIGIBLE',
       messageEn: 'Ineligible: Minimum PUC (10+2 / Intermediate) is strictly required for admission.',
-      messageTe: 'అనర్హులు: ప్రవేశానికి కనీస విద్యార్హత PUC (10+2 / ఇంటర్మీడియట్) తప్పనిసరి.',
-      ruleExplanationEn: 'Reddy Online Education requires a minimum of PUC (10+2 / Intermediate / Higher Secondary) completion for university-accredited certifications and clinical programs. Candidates with only 10th standard / SSLC cannot be admitted.',
-      ruleExplanationTe: 'రెడ్డి ఆన్‌లైన్ ఎడ్యుకేషన్ లో సర్టిఫికేషన్ మరియు క్లినికల్ ప్రోగ్రామ్‌లకు కనీసం PUC (10+2 / ఇంటర్మీడియట్) పాస్ అయి ఉండాలి. కేవలం 10వ తరగతి పూర్తి చేసిన విద్యార్థులకు ప్రవేశ అర్హత లేదు.'
+      ruleExplanationEn: 'Reddy Online Education requires a minimum of PUC (10+2 / Intermediate / Higher Secondary) completion for university-accredited certifications and clinical programs. Candidates with only 10th standard / SSLC cannot be admitted.'
     };
   }
 
   // Course specific advisory
   let extraEn = 'Meets Reddy Online Education statutory admission criteria.';
-  let extraTe = 'రెడ్డి ఆన్‌లైన్ ఎడ్యుకేషన్ అధికారిక ప్రవేశ అర్హత ప్రమాణాలను పూర్తి చేశారు.';
 
   if (courseId === 'bsc-nursing-clinical' || courseId === 'bds-dentistry-clinical') {
     extraEn += ' Medical/Clinical programs require PUC with Science (Physics, Chemistry, Biology) background.';
-    extraTe += ' మెడికల్/క్లినికల్ ప్రోగ్రామ్‌ల కొరకు సైన్స్ (ఫిజిక్స్, కెమిస్ట్రీ, బయాలజీ) సబ్జెక్టులు సిఫార్సు చేయబడ్డాయి.';
   } else if (courseId === 'aiml-engineering-mastery' || courseId === 'advanced-mathematics') {
     extraEn += ' Analytical curriculum aligned with PUC Mathematics background.';
-    extraTe += ' మ్యాథమెటిక్స్ సిలబస్‌తో సాంకేతిక శిక్షణకు తగిన అర్హత.';
   }
 
   return {
@@ -66,9 +56,7 @@ export function checkEligibility(
     qualificationLabel: qualLabel,
     statusBadge: 'ELIGIBLE',
     messageEn: 'Eligible: Minimum academic qualification (PUC / 10+2) verified successfully.',
-    messageTe: 'అర్హులు: కనీస విద్యార్హత (PUC / 10+2) విజయవంతంగా ధృవీకరించబడింది.',
-    ruleExplanationEn: extraEn,
-    ruleExplanationTe: extraTe
+    ruleExplanationEn: extraEn
   };
 }
 

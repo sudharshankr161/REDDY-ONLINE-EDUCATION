@@ -25,7 +25,6 @@ import { speakWithFemaleVoice, stopFemaleVoice } from '../utils/speechVoice';
 export interface CampusSceneChapter {
   id: string;
   name: string;
-  nameTe: string;
   icon: React.ReactNode;
   startSec: number;
   endSec: number;
@@ -33,10 +32,8 @@ export interface CampusSceneChapter {
   badge: string;
   heading: string;
   caption: string;
-  narrationTe: string;
   narrationEn: string;
   subtitles: {
-    te: string;
     en: string;
     kn: string;
     hi: string;
@@ -50,7 +47,6 @@ export const CAMPUS_CHAPTERS: CampusSceneChapter[] = [
   {
     id: 'chapter-classroom',
     name: 'Smart Classrooms & Analytics',
-    nameTe: 'స్మార్ట్ తరగతులు & అనలిటిక్స్',
     icon: <Cpu className="w-4 h-4 text-blue-400" />,
     startSec: 0,
     endSec: 30,
@@ -58,10 +54,8 @@ export const CAMPUS_CHAPTERS: CampusSceneChapter[] = [
     badge: '0:00 - 0:30 · Smart Lecture Theaters',
     heading: '4K Interactive Classrooms & Live Coding Studio',
     caption: 'Air-conditioned digital lecture halls equipped with 85-inch 4K interactive touch panels, dual-screen code projection, and real-time student performance analytics.',
-    narrationTe: 'రెడ్డి ఆన్‌లైన్ ఎడ్యుకేషన్ 2 నిమిషాల క్యాంపస్ టూర్‌కు స్వాగతం! మన అత్యాధునిక స్మార్ట్ క్లాస్‌రూమ్‌లలో 85 అంగుళాల 4K ఇంటరాక్టివ్ స్క్రీన్స్, లైవ్ పైథాన్ మరియు ఏఐఎంఎల్ కోడింగ్ ప్రొజెక్షన్, మరియు ప్రతి విద్యార్థి ప్రాక్టీస్‌ను ట్రాక్ చేసే రియల్-టైమ్ అనలిటిక్స్ ఇక్కడ లభిస్తాయి.',
     narrationEn: 'Welcome to the 2-minute campus video and audio tour of Reddy Online Education! Explore our air-conditioned smart digital lecture halls equipped with 85-inch 4K interactive touch displays, dual-screen live code projection, and real-time student learning analytics.',
     subtitles: {
-      te: 'స్మార్ట్ క్లాస్‌రూమ్‌లు: 85 అంగుళాల 4K టచ్ ప్యానెల్స్, లైవ్ కోడింగ్ ప్రొజెక్షన్ మరియు స్టూడెంట్ పెర్ఫార్మెన్స్ అనలిటిక్స్.',
       en: 'Smart Classrooms: 85-inch 4K touch displays, dual coding projection, and live student analytics.',
       kn: 'ಸ್ಮಾರ್ಟ್ ತರಗತಿ ಕೊಠಡಿಗಳು: 85 ಇಂಚಿನ 4K ಸಂವಾದಾತ್ಮಕ ಪರದೆಗಳು ಮತ್ತು ನೈಜ-ಸಮಯದ ತಂತ್ರಜ್ಞಾನ.',
       hi: 'स्मार्ट क्लासरूम: 85-इंच 4K इंटरैक्टिव टच डिस्प्ले और रीयल-टाइम कोडिंग विश्लेषण।'
@@ -71,7 +65,6 @@ export const CAMPUS_CHAPTERS: CampusSceneChapter[] = [
   {
     id: 'chapter-canteen',
     name: 'Campus Student Canteen',
-    nameTe: 'విద్యార్థుల క్యాంపస్ క్యాంటీన్',
     icon: <Utensils className="w-4 h-4 text-amber-400" />,
     startSec: 30,
     endSec: 60,
@@ -79,10 +72,8 @@ export const CAMPUS_CHAPTERS: CampusSceneChapter[] = [
     badge: '0:30 - 1:00 · Student Dining & Cafe',
     heading: 'Reddy Student Canteen & Collaborative Study Lounge',
     caption: 'Hygienic multi-cuisine cafeteria providing fresh, nutritious meals, beverage counters, and spacious wooden dining tables designed for group study and peer discussions.',
-    narrationTe: 'ఇది మన విద్యార్థుల క్యాంపస్ క్యాంటీన్ మరియు కాఫీ లాంజ్. 100 శాతం పరిశుభ్రమైన స్టీమ్ కిచెన్, పోషకమైన ఆహారం, సమతుల్య భోజనం మరియు స్నేహితులతో కలిసి గ్రూప్ స్టడీస్ చేసుకోవడానికి అనువైన హై-స్పీడ్ వై-ఫై లాంజ్ బూత్స్ ఇక్కడ ఉన్నాయి.',
     narrationEn: 'Step inside the Reddy student canteen and cafeteria lounge. Enjoying 100 percent hygienic steam-cooked nutritious meals, high-speed Wi-Fi, and spacious collaborative study breakout booths.',
     subtitles: {
-      te: 'క్యాంపస్ క్యాంటీన్: పరిశుభ్రమైన ఆహారం, పోషకమైన భోజనం మరియు గ్రూప్ స్టడీ లాంజ్.',
       en: 'Campus Canteen: 100% hygienic nutritious meals, Wi-Fi, and group study booths.',
       kn: 'ಕ್ಯಾಂಪಸ್ ಕ್ಯಾಂಟೀನ್: ನೈರ್ಮಲ್ಯಕರ ಊಟ ಮತ್ತು ಅಧ್ಯಯನ ಬೂತ್‌ಗಳು.',
       hi: 'कैंपस कैंटीन: स्वच्छ, पौष्टिक भोजन और सहयोगात्मक अध्ययन लाउंज।'
@@ -92,7 +83,6 @@ export const CAMPUS_CHAPTERS: CampusSceneChapter[] = [
   {
     id: 'chapter-exam',
     name: 'Central Examination Hall',
-    nameTe: 'సెంట్రల్ ఎగ్జామినేషన్ హాల్',
     icon: <FileCheck className="w-4 h-4 text-emerald-400" />,
     startSec: 60,
     endSec: 90,
@@ -100,10 +90,8 @@ export const CAMPUS_CHAPTERS: CampusSceneChapter[] = [
     badge: '1:00 - 1:30 · Digital Assessment Center',
     heading: '500-Workstation Secure Examination Center',
     caption: 'State-of-the-art 500-seat digital assessment hall with individual privacy dividers, biometric candidate verification, automated AI CCTV proctoring, and gigabit LAN.',
-    narrationTe: 'ఇది మన సెంట్రల్ ఎగ్జామినేషన్ హాల్. 500 మందికి పైగా విద్యార్థులు ఒకేసారి పరీక్షలు రాసేలా వ్యక్తిగత ప్రైవసీ విభజనలు, బయోమెట్రిక్ ప్రవేశం, మరియు ఏఐ సీసీటీవీ పర్యవేక్షణతో కూడిన పటిష్టమైన ఆన్‌లైన్ టెస్టింగ్ వ్యవస్థ ఇక్కడ సిద్ధంగా ఉంది.',
     narrationEn: 'Our 500-workstation central examination hall provides individual privacy dividers, biometric candidate verification, and automated proctored digital testing for board exams and certifications.',
     subtitles: {
-      te: 'సెంట్రల్ ఎగ్జామినేషన్ హాల్: 500 కంప్యూటర్ టెర్మినల్స్, బయోమెట్రిక్ భద్రత, మరియు AI పర్యవేక్షణ.',
       en: 'Central Examination Hall: 500+ dedicated PC terminals, biometric access, and proctoring.',
       kn: 'ಕೇಂದ್ರೀಯ ಪರೀಕ್ಷಾ ಸಭಾಂಗಣ: 500+ ಕಂಪ್ಯೂಟರ್ ಟರ್ಮಿನಲ್‌ಗಳು ಮತ್ತು ಬಯೋಮೆಟ್ರಿಕ್ ಭದ್ರತೆ.',
       hi: 'केंद्रीय परीक्षा हॉल: 500+ कंप्यूटर टर्मिनल, बायोमेट्रिक सुरक्षा और ऑनलाइन परीक्षण।'
@@ -113,7 +101,6 @@ export const CAMPUS_CHAPTERS: CampusSceneChapter[] = [
   {
     id: 'chapter-labs-placements',
     name: 'Healthcare Labs & Placements',
-    nameTe: 'క్లినికల్ ల్యాబ్‌లు & ప్లేస్‌మెంట్స్',
     icon: <HeartPulse className="w-4 h-4 text-rose-400" />,
     startSec: 90,
     endSec: 120,
@@ -121,10 +108,8 @@ export const CAMPUS_CHAPTERS: CampusSceneChapter[] = [
     badge: '1:30 - 2:00 · Labs & Life Settle Alumni',
     heading: 'Clinical Simulation Hospital & Life Settle Placements',
     caption: 'ICU simulation hospital, phantom head BDS dental operatory, and celebrated student placements across Zoho, Infosys, Nvidia partners, and NHS UK with packages up to ₹28.5 LPA.',
-    narrationTe: 'మన బీఎస్సీ నర్సింగ్ మరియు బీడీఎస్ డెంటల్ సిమ్యులేషన్ ల్యాబ్‌లు, అలాగే 96.8 శాతం ప్లేస్‌మెంట్ రికార్డుతో జోహో, ఇన్ఫోసిస్, ఏథర్, మణిపాల్, మరియు లండన్ ఎన్‌హెచ్‌ఎస్‌లో గరిష్టంగా 28.5 లక్షల ప్యాకేజీలతో స్థిరపడిన విద్యార్థుల విజయాలు. మీ కలల భవిష్యత్తు కోసం ఈరోజే జాయిన్ అవ్వండి!',
     narrationEn: 'Explore our clinical nursing ICU simulation hospital, phantom head dental operatory, and celebrate our life-settled alumni placed at top tech giants and premier hospitals with packages up to 28.5 LPA. Start your journey today!',
     subtitles: {
-      te: 'క్లినికల్ ల్యాబ్‌లు & ప్లేస్‌మెంట్స్: ICU సిమ్యులేటర్లు, డెంటల్ స్టేషన్లు, మరియు ₹28.5 LPA వరకు ప్యాకేజీలు.',
       en: 'Clinical Labs & Placements: ICU & dental simulators, 96.8% placement record up to ₹28.5 LPA.',
       kn: 'ಕ್ಲಿನಿಕಲ್ ಲ್ಯಾಬ್‌ಗಳು ಮತ್ತು ಪ್ಲೇಸ್‌ಮೆಂಟ್‌ಗಳು: ಐಸಿಯು ಸಿಮ್ಯುಲೇಟರ್‌ಗಳು ಮತ್ತು ₹28.5 LPA ಗರಿಷ್ಠ ಪ್ಯಾಕೇಜ್.',
       hi: 'क्लिनिकल लैब और प्लेसमेंट: आईसीयू सिमुलेटर, डेंटल स्टेशन और ₹28.5 LPA तक के पैकेज।'
@@ -138,7 +123,7 @@ export const CampusTourVideoPlayer: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const [playbackSpeed, setPlaybackSpeed] = useState<1 | 1.25 | 1.5>(1);
-  const [selectedLanguage, setSelectedLanguage] = useState<'te' | 'en' | 'kn' | 'hi'>('te');
+  const [selectedLanguage, setSelectedLanguage] = useState<'en' | 'kn' | 'hi'>('en');
   const [showCaptions, setShowCaptions] = useState<boolean>(true);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [isFemaleVoiceActive, setIsFemaleVoiceActive] = useState<boolean>(true);
@@ -258,13 +243,11 @@ export const CampusTourVideoPlayer: React.FC = () => {
     if (lastSpokenChapterRef.current !== activeChapter.id) {
       lastSpokenChapterRef.current = activeChapter.id;
       
-      const narrationText = selectedLanguage === 'te' 
-        ? activeChapter.narrationTe 
-        : activeChapter.narrationEn;
+      const narrationText = activeChapter.narrationEn;
 
       speakWithFemaleVoice(
         narrationText, 
-        selectedLanguage === 'te' ? 'te' : 'en', 
+        'en', 
         {
           pitch: 1.20, // Women sound pitch frequency
           rate: 0.95
@@ -313,7 +296,7 @@ export const CampusTourVideoPlayer: React.FC = () => {
           </span>
           <span className="hidden md:inline-block text-slate-400">·</span>
           <span className="hidden md:inline-block text-slate-300">
-            వీడియో మరియు ఆడియో రెండూ కలిపి 2 నిమిషాల సమగ్ర టూర్
+            Synchronized Female Voice Narration & Ambient Soundbed
           </span>
         </div>
 
@@ -389,9 +372,7 @@ export const CampusTourVideoPlayer: React.FC = () => {
             <div className="flex justify-center">
               <div className="bg-black/90 backdrop-blur-md px-4 py-2 rounded-xl border border-slate-700/80 max-w-3xl text-center shadow-2xl">
                 <p className="text-xs sm:text-sm font-semibold text-amber-300 leading-snug">
-                  {selectedLanguage === 'te' 
-                    ? activeChapter.subtitles.te 
-                    : selectedLanguage === 'kn'
+                  {selectedLanguage === 'kn'
                     ? activeChapter.subtitles.kn
                     : selectedLanguage === 'hi'
                     ? activeChapter.subtitles.hi
@@ -406,7 +387,7 @@ export const CampusTourVideoPlayer: React.FC = () => {
             <div className="space-y-1 max-w-2xl">
               <div className="text-[11px] font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>{selectedLanguage === 'te' ? activeChapter.nameTe : activeChapter.name}</span>
+                <span>{activeChapter.name}</span>
               </div>
               <h3 className="text-lg sm:text-2xl font-black text-white tracking-tight">
                 {activeChapter.heading}
@@ -497,7 +478,7 @@ export const CampusTourVideoPlayer: React.FC = () => {
                       ? 'bg-gradient-to-r from-pink-600 to-rose-600 text-white shadow-md ring-2 ring-pink-400/50'
                       : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
                   }`}
-                  title="Women Sound (మహిళా స్వరం ఆడియో)"
+                  title="Women Sound (Female Voice Audio)"
                 >
                   <span>👩‍🏫</span>
                   <span>{isFemaleVoiceActive ? 'Women Sound: ON' : 'Women Sound: OFF'}</span>
@@ -509,17 +490,6 @@ export const CampusTourVideoPlayer: React.FC = () => {
                 
                 {/* Language Switcher */}
                 <div className="flex items-center gap-1 bg-slate-900 p-0.5 rounded-lg border border-slate-800 text-[10px]">
-                  <button
-                    onClick={() => {
-                      setSelectedLanguage('te');
-                      lastSpokenChapterRef.current = null;
-                    }}
-                    className={`px-2 py-1 rounded font-bold cursor-pointer transition-colors ${
-                      selectedLanguage === 'te' ? 'bg-red-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    తెలుగు
-                  </button>
                   <button
                     onClick={() => {
                       setSelectedLanguage('en');
@@ -593,7 +563,7 @@ export const CampusTourVideoPlayer: React.FC = () => {
         <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5 flex items-center justify-between">
           <span className="flex items-center gap-1.5 text-white">
             <Layers className="w-3.5 h-3.5 text-amber-500" />
-            <span>4 Core Facilities Tour (తరగతులు, క్యాంటీన్, ఎగ్జామ్ హాల్, ప్లేస్‌మెంట్స్)</span>
+            <span>4 Core Facilities Tour (Classrooms, Canteen, Examination Hall & Placements)</span>
           </span>
           <span className="font-mono text-[11px] text-amber-400">Total: 2 Minutes (120s · 30s each)</span>
         </div>
@@ -624,7 +594,7 @@ export const CampusTourVideoPlayer: React.FC = () => {
                 
                 <div className="mt-2.5 space-y-0.5">
                   <div className="text-xs font-bold text-white line-clamp-1">
-                    {selectedLanguage === 'te' ? chapter.nameTe : chapter.name}
+                    {chapter.name}
                   </div>
                   <div className="text-[10px] text-slate-400 flex items-center justify-between">
                     <span>Facility 0{idx + 1}</span>
