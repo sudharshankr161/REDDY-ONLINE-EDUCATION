@@ -19,6 +19,8 @@ interface HeroProps {
   onOpenLinks: () => void;
   onScrollToCourses: () => void;
   onScrollToFounder: () => void;
+  onOpenRegistrationList?: () => void;
+  onOpenNewRegistration?: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({
@@ -29,7 +31,9 @@ export const Hero: React.FC<HeroProps> = ({
   onOpenLive,
   onOpenLinks,
   onScrollToCourses,
-  onScrollToFounder
+  onScrollToFounder,
+  onOpenRegistrationList,
+  onOpenNewRegistration
 }) => {
   const categories = [
     { id: 'all', label: 'All Disciplines' },
@@ -129,6 +133,26 @@ export const Hero: React.FC<HeroProps> = ({
             Explore Courses & Fee Structure
             <ArrowRight className="w-4 h-4" />
           </button>
+
+          {onOpenNewRegistration && (
+            <button
+              onClick={onOpenNewRegistration}
+              className="flex items-center gap-2 px-4 py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-xl text-xs shadow-sm transition-all cursor-pointer whitespace-nowrap"
+            >
+              <Sparkles className="w-4 h-4 text-slate-900" />
+              <span>Apply & Check Eligibility (PUC Min)</span>
+            </button>
+          )}
+
+          {onOpenRegistrationList && (
+            <button
+              onClick={onOpenRegistrationList}
+              className="flex items-center gap-2 px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-semibold shadow-sm transition-all cursor-pointer whitespace-nowrap"
+            >
+              <span>Student Registration Directory</span>
+              <span className="text-[10px] bg-red-600 text-white px-1.5 py-0.2 rounded font-bold">Registry</span>
+            </button>
+          )}
           
           <button
             onClick={onOpenLive}
@@ -151,6 +175,26 @@ export const Hero: React.FC<HeroProps> = ({
           >
             Founder & CEO Message ↓
           </button>
+        </div>
+
+        {/* Admissions Eligibility Notification Strip */}
+        <div className="mt-5 max-w-2xl mx-auto p-2.5 bg-red-50/80 border border-red-200/90 rounded-2xl flex items-center justify-between gap-3 text-xs text-red-900">
+          <div className="flex items-center gap-2 text-left">
+            <span className="w-6 h-6 rounded-lg bg-red-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0">
+              PUC
+            </span>
+            <span className="text-[11px] leading-tight font-medium">
+              <strong>Mandatory Academic Rule:</strong> Minimum <strong>PUC (10+2 / Intermediate)</strong> required for all programs. 10th standard alone is ineligible.
+            </span>
+          </div>
+          {onOpenNewRegistration && (
+            <button
+              onClick={onOpenNewRegistration}
+              className="text-[11px] font-bold text-red-700 hover:text-red-900 underline shrink-0 cursor-pointer"
+            >
+              Check My Eligibility →
+            </button>
+          )}
         </div>
 
         {/* 4-Column Proof & Quantitative Rigor Strip */}

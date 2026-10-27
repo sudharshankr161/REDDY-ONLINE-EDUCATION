@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { Course, PaymentTransaction } from '../types';
+import { Course, PaymentTransaction, EducationLevel } from '../types';
 import { useAuth } from '../context/AuthContext';
+import { 
+  checkEligibility, 
+  QUALIFICATION_LABELS, 
+  saveNewRegistration 
+} from '../services/registrationService';
 import { 
   X, 
   CreditCard, 
   ShieldCheck, 
   CheckCircle2, 
+  XCircle,
   Sparkles, 
   Download, 
   Printer, 
@@ -13,7 +19,9 @@ import {
   QrCode, 
   Building2, 
   ArrowRight,
-  Award
+  Award,
+  AlertTriangle,
+  GraduationCap
 } from 'lucide-react';
 
 interface FeePaymentModalProps {
@@ -34,6 +42,11 @@ export const FeePaymentModal: React.FC<FeePaymentModalProps> = ({
   const [studentEmail, setStudentEmail] = useState(user?.email || '');
   const [studentPhone, setStudentPhone] = useState(user?.phone || '+91 98800 12345');
   const [college, setCollege] = useState(user?.collegeOrWorkplace || 'Bangalore University / Hospital');
+  
+  // Education & Eligibility Check (Min PUC Required)
+  const [qualification, setQualification] = useState<EducationLevel>('puc');
+  const [stream, setStream] = useState('Science (PCMB / PCM / Commerce)');
+  const [pucPercentage, setPucPercentage] = useState<number>(85.0);
 
   // Pricing & Scholarship
   const [promoCode, setPromoCode] = useState('REDDY2026');
@@ -76,8 +89,15 @@ export const FeePaymentModal: React.FC<FeePaymentModalProps> = ({
     }
   };
 
+  const eligibility = checkEligibility(qualification, stream, pucPercentage, course.id);
+
   const handleInitiatePayment = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!eligibility.isEligible) {
+      if (!window.confirm("⚠️ Ineligible Notice: Minimum qualification required is PUC (10+2 / Intermediate). Candidates with 10th standard only will be logged as Ineligible and cannot receive university certification. Do you still wish to proceed with demo submission?")) {
+        return;
+      }
+    }
     setStage('processing');
     setTimeout(() => {
       setStage('otp');
@@ -94,6 +114,34 @@ export const FeePaymentModal: React.FC<FeePaymentModalProps> = ({
         total: payableNow,
         method: paymentMethod
       });
+
+      // Save to Master Student Registration Registry
+      const qualLabel = QUALIFICATION_LABELS[qualification]?.en || qualification;
+      saveNewRegistration({
+        studentName: studentName.trim() || 'Student',
+        email: studentEmail.trim() || 'student@reddyeducation.online',
+        phone: studentPhone.trim() || '+91 98800 12345',
+        city: 'Bengaluru',
+        state: 'Karnataka',
+        qualification,
+        qualificationLabel: qualLabel,
+        stream: stream.trim(),
+        pucPercentage: Number(pucPercentage) || 0,
+        passingYear: '2025',
+        collegeName: college.trim() || 'Institution of Learning',
+        boardOrUniversity: 'Board of Pre-University Education',
+        appliedCourseId: course.id,
+        appliedCourseName: course.title,
+        isEligible: eligibility.isEligible,
+        eligibilityBadge: eligibility.isEligible ? 'ELIGIBLE' : 'INELIGIBLE',
+        eligibilityRemarks: eligibility.isEligible
+          ? `Verified ${qualLabel} (${pucPercentage}%). Confirmed admission via fee payment.`
+          : `❌ Ineligible (< PUC qualification). Fee received but flagged as ineligible.`,
+        status: eligibility.isEligible ? 'Admission Confirmed' : 'Ineligible - Rejected',
+        feeStatus: installmentMode === 'installment' ? 'Partial / 1st Installment' : 'Paid',
+        feePaidINR: payableNow
+      });
+
       setCompletedTransaction(txn);
       setStage('success');
       onPaymentSuccess(txn);
@@ -338,10 +386,16 @@ Authorized Signatory: Sudharshan Reddy K R (Founder & CEO)
               {/* Left Column: Student Details & Payment Methods (7 cols) */}
               <div className="lg:col-span-7 space-y-6">
                 
-                {/* 1. Student Registration Data */}
+                {/* 1. Student Registration Data & Education Eligibility */}
                 <div className="space-y-3">
-                  <div className="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
-                    <span>1. Student Registration Profile</span>
+                  <div className="flex items-center justify-between">
+                    <div className="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                      <GraduationCap className="w-4 h-4 text-red-600" />
+                      <span>1. Student Registration & Eligibility (PUC Min Required)</span>
+                    </div>
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                      కనీస అర్హత: PUC (10+2)
+                    </span>
                   </div>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
@@ -385,6 +439,77 @@ Authorized Signatory: Sudharshan Reddy K R (Founder & CEO)
                         onChange={(e) => setCollege(e.target.value)}
                         className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500"
                       />
+                    </div>
+
+                    {/* Educational Qualification Selector */}
+                    <div>
+                      <label className="block text-slate-700 font-bold mb-1">
+                        Highest Qualification * (కనిష్ట విద్యార్హత)
+                      </label>
+                      <select
+                        value={qualification}
+                        onChange={(e) => setQualification(e.target.value as EducationLevel)}
+                        className="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-xl font-medium focus:outline-none focus:border-red-500"
+                      >
+                        <option value="puc">PUC / 10+2 / Intermediate (Eligible ✅)</option>
+                        <option value="graduate">Bachelor Degree (BSc, BTech, BDS, etc.) (Eligible ✅)</option>
+                        <option value="diploma">Polytechnic / 3-Yr Diploma (Eligible ✅)</option>
+                        <option value="postgraduate">Post-Graduate / Masters (Eligible ✅)</option>
+                        <option value="10th">10th Standard / SSLC (Ineligible ❌ - Below PUC)</option>
+                      </select>
+                    </div>
+
+                    {/* Stream and PUC percentage */}
+                    <div>
+                      <label className="block text-slate-700 font-bold mb-1">
+                        PUC / 10+2 Stream & Score (%) *
+                      </label>
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          required
+                          value={stream}
+                          onChange={(e) => setStream(e.target.value)}
+                          placeholder="e.g. Science / MPC / Commerce"
+                          className="flex-1 p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500 text-xs"
+                        />
+                        <input
+                          type="number"
+                          step="0.1"
+                          min="35"
+                          max="100"
+                          value={pucPercentage}
+                          onChange={(e) => setPucPercentage(parseFloat(e.target.value) || 0)}
+                          placeholder="%"
+                          className="w-16 p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500 text-xs text-center font-mono font-bold"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Live Dynamic Eligibility Validation Callout */}
+                  <div className={`p-3 rounded-xl border flex items-start gap-2.5 text-xs transition-all ${
+                    eligibility.isEligible 
+                      ? 'bg-emerald-50/90 border-emerald-300 text-emerald-950' 
+                      : 'bg-rose-50/90 border-rose-300 text-rose-950 ring-2 ring-rose-400'
+                  }`}>
+                    {eligibility.isEligible ? (
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    ) : (
+                      <XCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                    )}
+                    <div className="space-y-0.5">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <span className={`px-1.5 py-0.2 rounded text-[10px] font-black uppercase ${
+                          eligibility.isEligible ? 'bg-emerald-200 text-emerald-900' : 'bg-rose-200 text-rose-900'
+                        }`}>
+                          {eligibility.statusBadge}: {eligibility.isEligible ? 'ADMISSION CRITERIA SATISFIED' : 'BELOW MINIMUM PUC'}
+                        </span>
+                        <strong className="text-xs">{eligibility.messageEn}</strong>
+                      </div>
+                      <p className="text-[11px] opacity-90">
+                        <strong>తెలుగు:</strong> {eligibility.messageTe}
+                      </p>
                     </div>
                   </div>
                 </div>

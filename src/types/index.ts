@@ -124,3 +124,44 @@ export interface UserProfile {
   enrolledCourses: Record<string, EnrolledCourseProgress>; // courseId -> progress
   paymentHistory: PaymentTransaction[];
 }
+
+export type EducationLevel = '10th' | 'puc' | 'diploma' | 'graduate' | 'postgraduate';
+
+export interface EligibilityResult {
+  isEligible: boolean;
+  qualification: EducationLevel;
+  qualificationLabel: string;
+  statusBadge: 'ELIGIBLE' | 'INELIGIBLE';
+  messageEn: string;
+  messageTe: string;
+  ruleExplanationEn: string;
+  ruleExplanationTe: string;
+}
+
+export interface StudentRegistrationRecord {
+  id: string;
+  applicationNo: string;
+  studentName: string;
+  email: string;
+  phone: string;
+  city: string;
+  state: string;
+  qualification: EducationLevel;
+  qualificationLabel: string;
+  stream: string;
+  pucPercentage: number;
+  passingYear: string;
+  collegeName: string;
+  boardOrUniversity: string;
+  appliedCourseId: string;
+  appliedCourseName: string;
+  isEligible: boolean;
+  eligibilityBadge: 'ELIGIBLE' | 'INELIGIBLE';
+  eligibilityRemarks: string;
+  status: 'Admission Confirmed' | 'Provisionally Eligible' | 'Ineligible - Rejected' | 'Under Review';
+  feeStatus: 'Paid' | 'Partial / 1st Installment' | 'Pending Payment' | 'N/A (Ineligible)';
+  feePaidINR: number;
+  registeredAt: string;
+  registeredAtFormatted: string;
+}
+

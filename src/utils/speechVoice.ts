@@ -44,6 +44,14 @@ export const FEMALE_VOICE_SCRIPTS: VoiceGuideScript[] = [
     titleTe: 'అన్ని 6 ప్రత్యేక కోర్సుల వివరాలు',
     textEn: 'We offer six career-transforming programs: Core and Advanced Python Programming, Artificial Intelligence and Machine Learning Mastery, Bachelor of Science in Clinical Nursing, Bachelor of Dental Surgery, Higher Applied Mathematics, and Executive Communication and Leadership Skills. Each course includes structured syllabus, live classes, study notes, and direct mentorship.',
     textTe: 'మన ఇన్స్టిట్యూట్‌లో ఆరు ఉత్తమ కోర్సులు ఉన్నాయి: పైథాన్ ప్రోగ్రామింగ్, ఆర్టిఫిషియల్ ఇంటెలిజెన్స్ అండ్ మెషిన్ లెర్నింగ్, బీఎస్సీ నర్సింగ్, బీడీఎస్ డెంటల్ సర్జరీ, హైయర్ మ్యాథమెటిక్స్, మరియు కమ్యూనికేషన్ స్కిల్స్. ప్రతి కోర్సులో లైవ్ క్లాసులు, స్టడీ మెటీరియల్స్ మరియు ప్రాక్టికల్ ట్రైనింగ్ ఉంటాయి.'
+  },
+  {
+    id: 'puc-eligibility',
+    category: 'Admissions & Eligibility',
+    titleEn: 'Minimum PUC Eligibility & Student Registry',
+    titleTe: 'కనీస PUC అర్హత & స్టూడెంట్స్ రిజిస్ట్రేషన్ జాబితా',
+    textEn: 'Admissions guideline notice: Reddy Online Education strictly requires a minimum qualification of PUC (10+2 or Intermediate) for all university programs. Candidates with only 10th standard are ineligible for accredited certifications. All enrolled students and their applied courses are stored in our transparent Admissions Directory.',
+    textTe: 'ముఖ్య గమనిక: రెడ్డి ఆన్‌లైన్ ఎడ్యుకేషన్ లో ప్రవేశానికి కనీస విద్యార్హత PUC (10+2 / ఇంటర్మీడియట్) తప్పనిసరి. కేవలం 10వ తరగతి చదివిన వారికి ప్రవేశ అర్హత లేదు. రిజిస్టర్ అయిన విద్యార్థుల పూర్తి జాబితా మరియు వారి కోర్సుల వివరాలు మన స్టూడెంట్ రిజిస్ట్రేషన్ డైరెక్టరీలో భద్రపరచబడ్డాయి.'
   }
 ];
 

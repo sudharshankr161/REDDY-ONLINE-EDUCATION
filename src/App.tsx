@@ -15,21 +15,22 @@ import { StudentDashboard } from './components/StudentDashboard';
 import { CertificateModal } from './components/CertificateModal';
 import { AuthModal } from './components/AuthModal';
 import { Footer } from './components/Footer';
+import { AboutPage } from './components/AboutPage';
+import { AboutPageModal } from './components/AboutPageModal';
+import { VoiceGuideAssistant } from './components/VoiceGuideAssistant';
+import { StudentRegistrationModal } from './components/StudentRegistrationModal';
+import { StudentRegistrationListModal } from './components/StudentRegistrationListModal';
 import { 
   Sparkles, 
   BookOpen, 
   Radio, 
   FileText, 
   Globe, 
-  Award, 
   CheckCircle2, 
-  HelpCircle,
-  PhoneCall
+  PhoneCall,
+  ClipboardList,
+  GraduationCap
 } from 'lucide-react';
-
-import { AboutPage } from './components/AboutPage';
-import { AboutPageModal } from './components/AboutPageModal';
-import { VoiceGuideAssistant } from './components/VoiceGuideAssistant';
 
 const MainApp: React.FC = () => {
   const { user, isEnrolled } = useAuth();
@@ -52,6 +53,11 @@ const MainApp: React.FC = () => {
   const [studentDashboardOpen, setStudentDashboardOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [certificateData, setCertificateData] = useState<{ courseId: string; certId: string } | null>(null);
+
+  // Student Registration & Eligibility Modals
+  const [registrationListModalOpen, setRegistrationListModalOpen] = useState(false);
+  const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
+  const [selectedCourseForRegistration, setSelectedCourseForRegistration] = useState<string | undefined>(undefined);
 
   // Success Toast state
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -130,6 +136,11 @@ const MainApp: React.FC = () => {
           if (currentView !== 'home') setCurrentView('home');
           setTimeout(() => handleScrollToCourses(), 100);
         }}
+        onOpenRegistrationList={() => setRegistrationListModalOpen(true)}
+        onOpenNewRegistration={() => {
+          setSelectedCourseForRegistration(undefined);
+          setRegistrationModalOpen(true);
+        }}
       />
 
       {/* Conditionally Render: Dedicated About Us Page OR Home Campus View */}
@@ -156,6 +167,11 @@ const MainApp: React.FC = () => {
             onOpenLinks={() => setWebsiteLinksModalOpen(true)}
             onScrollToCourses={handleScrollToCourses}
             onScrollToFounder={handleScrollToFounder}
+            onOpenRegistrationList={() => setRegistrationListModalOpen(true)}
+            onOpenNewRegistration={() => {
+              setSelectedCourseForRegistration(undefined);
+              setRegistrationModalOpen(true);
+            }}
           />
 
           {/* Founder & CEO Showcase Section (Prominently displaying the uploaded images) */}
@@ -203,6 +219,16 @@ const MainApp: React.FC = () => {
                 >
                   <FileText className="w-3.5 h-3.5 text-slate-500" />
                   Download Study Guides
+                </button>
+                <button
+                  onClick={() => setRegistrationListModalOpen(true)}
+                  className="px-3.5 py-2 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-900 rounded-xl text-xs font-bold shadow-xs transition-colors cursor-pointer flex items-center gap-1.5"
+                >
+                  <ClipboardList className="w-3.5 h-3.5 text-emerald-700" />
+                  <span>Student Registrations List</span>
+                  <span className="text-[10px] bg-emerald-700 text-white px-1.5 py-0.2 rounded font-mono">
+                    PUC Min
+                  </span>
                 </button>
                 <button
                   onClick={() => setWebsiteLinksModalOpen(true)}
@@ -257,23 +283,33 @@ const MainApp: React.FC = () => {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
+              <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 flex-wrap">
+                <button
+                  onClick={() => {
+                    setSelectedCourseForRegistration(undefined);
+                    setRegistrationModalOpen(true);
+                  }}
+                  className="w-full sm:w-auto px-5 py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-black transition-all cursor-pointer whitespace-nowrap shadow-md shadow-red-600/30 flex items-center justify-center gap-2"
+                >
+                  <GraduationCap className="w-4 h-4" />
+                  <span>Check Eligibility & Register (PUC Min)</span>
+                </button>
+                <button
+                  onClick={() => setRegistrationListModalOpen(true)}
+                  className="w-full sm:w-auto px-5 py-3 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap shadow-md flex items-center justify-center gap-2"
+                >
+                  <ClipboardList className="w-4 h-4" />
+                  <span>Students Registry List</span>
+                </button>
                 <button
                   onClick={() => {
                     setCurrentView('about');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="w-full sm:w-auto px-5 py-3 bg-white text-slate-900 hover:bg-slate-100 rounded-xl text-xs font-extrabold transition-all cursor-pointer whitespace-nowrap shadow-md"
+                  className="w-full sm:w-auto px-4 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl text-xs font-semibold transition-all cursor-pointer whitespace-nowrap"
                 >
-                  About Us & Campus Photos
+                  Campus & Photos
                 </button>
-                <a
-                  href="mailto:sudharshankr1611@gmail.com"
-                  className="w-full sm:w-auto px-5 py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-extrabold transition-all cursor-pointer whitespace-nowrap flex items-center justify-center gap-2 shadow-md shadow-red-600/30"
-                >
-                  <PhoneCall className="w-4 h-4" />
-                  <span>Contact Admissions Desk</span>
-                </a>
               </div>
             </div>
 
@@ -389,6 +425,32 @@ const MainApp: React.FC = () => {
             setAboutPageModalOpen(false);
             if (currentView !== 'home') setCurrentView('home');
             setTimeout(() => handleScrollToCourses(), 150);
+          }}
+        />
+      )}
+
+      {/* MODAL 10: Student Registration Directory / Registered Students List & Courses */}
+      {registrationListModalOpen && (
+        <StudentRegistrationListModal
+          onClose={() => setRegistrationListModalOpen(false)}
+          onOpenNewRegistration={() => {
+            setSelectedCourseForRegistration(undefined);
+            setRegistrationModalOpen(true);
+          }}
+        />
+      )}
+
+      {/* MODAL 11: Student Registration & PUC Eligibility Validator Form */}
+      {registrationModalOpen && (
+        <StudentRegistrationModal
+          initialCourseId={selectedCourseForRegistration}
+          onClose={() => setRegistrationModalOpen(false)}
+          onViewRegistry={() => {
+            setRegistrationModalOpen(false);
+            setRegistrationListModalOpen(true);
+          }}
+          onRegistrationComplete={(rec) => {
+            showToast(`Registration ${rec.applicationNo} logged (${rec.isEligible ? 'Eligible' : 'Ineligible'}).`);
           }}
         />
       )}

@@ -115,9 +115,14 @@ export const CourseCard: React.FC<CourseCardProps> = ({
             {course.subtitle}
           </p>
 
-          {/* Faculty / Instructor Attribution */}
-          <div className="text-[11px] text-slate-500 pt-1">
-            Faculty: <span className="text-slate-700 font-semibold">{course.instructor}</span>
+          {/* Faculty / Instructor Attribution & Eligibility */}
+          <div className="flex items-center justify-between text-[11px] text-slate-500 pt-1">
+            <div>
+              Faculty: <span className="text-slate-700 font-semibold">{course.instructor}</span>
+            </div>
+            <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+              Min: PUC (10+2)
+            </span>
           </div>
         </div>
 

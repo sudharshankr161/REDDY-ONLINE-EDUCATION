@@ -11,7 +11,8 @@ import {
   FileText, 
   CheckCircle,
   Menu,
-  X
+  X,
+  ClipboardList
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -23,6 +24,8 @@ interface NavbarProps {
   onOpenAuth: () => void;
   onScrollToFounder: () => void;
   onScrollToCourses: () => void;
+  onOpenRegistrationList: () => void;
+  onOpenNewRegistration: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -33,7 +36,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenLinks,
   onOpenAuth,
   onScrollToFounder,
-  onScrollToCourses
+  onScrollToCourses,
+  onOpenRegistrationList,
+  onOpenNewRegistration
 }) => {
   const { user, logout, switchDemoUser } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -97,6 +102,17 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <FileText className="w-4 h-4 text-slate-400" />
               Study Materials
+            </button>
+            <button
+              onClick={onOpenRegistrationList}
+              className="hover:text-red-600 transition-colors whitespace-nowrap shrink-0 flex items-center gap-1.5 cursor-pointer text-slate-800 font-semibold"
+              title="View student registrations directory and eligibility records"
+            >
+              <ClipboardList className="w-4 h-4 text-red-600" />
+              <span>Registrations List</span>
+              <span className="inline-flex items-center px-1.5 py-0.2 text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded">
+                PUC Min
+              </span>
             </button>
             <button
               onClick={onOpenLinks}
@@ -229,6 +245,26 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <FileText className="w-4 h-4 text-slate-400" />
             Download Study Materials
+          </button>
+          <button
+            onClick={() => { setMobileMenuOpen(false); onOpenRegistrationList(); }}
+            className="w-full text-left px-3 py-2 text-sm font-semibold text-slate-800 bg-slate-50 hover:bg-slate-100 rounded-lg flex items-center justify-between"
+          >
+            <span className="flex items-center gap-2">
+              <ClipboardList className="w-4 h-4 text-red-600" />
+              Student Registration List (రిజిస్ట్రేషన్ జాబితా)
+            </span>
+            <span className="text-[10px] font-bold bg-red-600 text-white px-2 py-0.5 rounded-full">PUC Min</span>
+          </button>
+          <button
+            onClick={() => { setMobileMenuOpen(false); onOpenNewRegistration(); }}
+            className="w-full text-left px-3 py-2 text-sm font-semibold text-red-700 bg-red-50 hover:bg-red-100 rounded-lg flex items-center justify-between"
+          >
+            <span className="flex items-center gap-2">
+              <GraduationCap className="w-4 h-4 text-red-600" />
+              Check Eligibility & Register
+            </span>
+            <span className="text-[10px] font-bold bg-amber-400 text-slate-900 px-2 py-0.5 rounded">10+2</span>
           </button>
           <button
             onClick={() => { setMobileMenuOpen(false); onOpenLinks(); }}
